@@ -17,8 +17,8 @@ contract TreasureDrop is ERC721A, Ownable {
     uint256 public maxMintPerWallet = 1;
 
     bytes32 public merkleRoot = "";
-    string private baseURI = "ipfs://QmeHYxnBFz89c9mTyDHcGEj7NNXyYeYtc3GTxZ9TtKG6S3";
-    string public uriNotRevealed = "ipfs://QmeHYxnBFz89c9mTyDHcGEj7NNXyYeYtc3GTxZ9TtKG6S3";
+    string private baseURI = "ipfs://QmUu3dwMQ6oG2Nti1T3G7ZnN1a6Pfhb8kMbtzq8hjVygAE/";
+    string public uriNotRevealed = "ipfs://QmUu3dwMQ6oG2Nti1T3G7ZnN1a6Pfhb8kMbtzq8hjVygAE/";
     
     bool public paused = false;
     bool public isRevealed;
@@ -66,7 +66,7 @@ contract TreasureDrop is ERC721A, Ownable {
     function tokenURI(uint256 tokenId) public view virtual override returns (string memory) {
         require(_exists(tokenId), "ERC721Metadata: URI query for nonexistent token");
         if (isRevealed == false) {
-            return uriNotRevealed;
+            return bytes(uriNotRevealed).length > 0 ? string(abi.encodePacked(uriNotRevealed, tokenId.toString(), ".json")) : "";
         }
         string memory base = baseURI;
         return bytes(base).length > 0 ? string(abi.encodePacked(base, tokenId.toString(), ".json")) : "";

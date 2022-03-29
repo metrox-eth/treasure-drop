@@ -1,0 +1,11 @@
+{
+    "name": "Treasure Drop #8",
+    "description": "Treasure Drop NFT",
+    "image": "ipfs://QmWw9x4wVz16ZSvnKLTfY2zf6yzcSeA8wEPWXWbYGEdK4T/8.png",
+    "edition": 0,
+    "date": 1647850321696,
+    "attributes": [{
+        "trait_type": "Message",
+        "value": "To be revealed on 4th of April 2022"
+    }]
+}
