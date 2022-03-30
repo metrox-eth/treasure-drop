@@ -20,7 +20,7 @@ contract TreasureDrop is ERC721A, Ownable {
     event Minted(address caller);
 
     constructor() ERC721A("TreasureDrop", "TDR") {
-        transferOwnership(0x24F15402C6Bb870554489b2fd2049A85d75B982f);
+        transferOwnership(0x577A2199eA979F87000B0E003fe38D56BEC01F6E);
     }
     
     function mintPublic(string memory key) external {
