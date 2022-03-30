@@ -65,25 +65,6 @@
 				"inputs": [
 					{
 						"indexed": false,
-						"internalType": "bytes32",
-						"name": "hash",
-						"type": "bytes32"
-					},
-					{
-						"indexed": false,
-						"internalType": "uint256",
-						"name": "value",
-						"type": "uint256"
-					}
-				],
-				"name": "AuthHashChange",
-				"type": "event"
-			},
-			{
-				"anonymous": false,
-				"inputs": [
-					{
-						"indexed": false,
 						"internalType": "address",
 						"name": "caller",
 						"type": "address"
@@ -212,13 +193,6 @@
 				"type": "function"
 			},
 			{
-				"inputs": [],
-				"name": "flipPaused",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
 				"inputs": [
 					{
 						"internalType": "string",
@@ -245,19 +219,6 @@
 						"internalType": "address",
 						"name": "",
 						"type": "address"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "getPricePublic",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
 					}
 				],
 				"stateMutability": "view",
@@ -302,51 +263,12 @@
 			},
 			{
 				"inputs": [],
-				"name": "maxMintPerWallet",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "maxPerTxPublic",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [],
 				"name": "maxSupply",
 				"outputs": [
 					{
 						"internalType": "uint256",
 						"name": "",
 						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "merkleRoot",
-				"outputs": [
-					{
-						"internalType": "bytes32",
-						"name": "",
-						"type": "bytes32"
 					}
 				],
 				"stateMutability": "view",
@@ -362,7 +284,7 @@
 				],
 				"name": "mintPublic",
 				"outputs": [],
-				"stateMutability": "payable",
+				"stateMutability": "nonpayable",
 				"type": "function"
 			},
 			{
@@ -418,32 +340,6 @@
 						"internalType": "address",
 						"name": "",
 						"type": "address"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "paused",
-				"outputs": [
-					{
-						"internalType": "bool",
-						"name": "",
-						"type": "bool"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "remaining",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
 					}
 				],
 				"stateMutability": "view",
@@ -528,14 +424,32 @@
 			{
 				"inputs": [
 					{
+						"internalType": "uint256",
+						"name": "_hash",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "value",
+						"type": "uint256"
+					}
+				],
+				"name": "setAuthHash",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
 						"internalType": "uint256[]",
 						"name": "_hashes",
 						"type": "uint256[]"
 					},
 					{
-						"internalType": "uint256[]",
-						"name": "values",
-						"type": "uint256[]"
+						"internalType": "uint256",
+						"name": "value",
+						"type": "uint256"
 					}
 				],
 				"name": "setAuthHashes",
@@ -565,45 +479,6 @@
 					}
 				],
 				"name": "setMaxSupply",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "bytes32",
-						"name": "_merkleRoot",
-						"type": "bytes32"
-					}
-				],
-				"name": "setMerkleRoot",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "uint256",
-						"name": "_newPrice",
-						"type": "uint256"
-					}
-				],
-				"name": "setPricePublic",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "string",
-						"name": "_URI",
-						"type": "string"
-					}
-				],
-				"name": "setUriNotRevealed",
 				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
@@ -703,25 +578,6 @@
 				"type": "function"
 			},
 			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "_owner",
-						"type": "address"
-					}
-				],
-				"name": "tokensOfOwner",
-				"outputs": [
-					{
-						"internalType": "uint256[]",
-						"name": "",
-						"type": "uint256[]"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
 				"inputs": [],
 				"name": "totalSupply",
 				"outputs": [
@@ -768,19 +624,6 @@
 				"name": "transferOwnership",
 				"outputs": [],
 				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "uriNotRevealed",
-				"outputs": [
-					{
-						"internalType": "string",
-						"name": "",
-						"type": "string"
-					}
-				],
-				"stateMutability": "view",
 				"type": "function"
 			},
 			{
@@ -880,7 +723,7 @@
 			"bytecodeHash": "ipfs"
 		},
 		"optimizer": {
-			"enabled": false,
+			"enabled": true,
 			"runs": 200
 		},
 		"remappings": []
@@ -950,14 +793,6 @@
 				"dweb:/ipfs/QmWFbivarEobbqhS1go64ootVuHfVohBseerYy9FTEd1W2"
 			]
 		},
-		"@openzeppelin/contracts/utils/cryptography/MerkleProof.sol": {
-			"keccak256": "0x9c35727c74a6ffd8d02237b414e7bfb532c0323b1088709def98ea5c628157de",
-			"license": "MIT",
-			"urls": [
-				"bzz-raw://43ea1c4a5760f18794645133057e0a3df8eeac81a6ba266fb95f28233f088662",
-				"dweb:/ipfs/QmbUHWmwqBMrub71Rs3dLnAoVkf2HPzmUAKfA6Eu28P3G7"
-			]
-		},
 		"@openzeppelin/contracts/utils/introspection/ERC165.sol": {
 			"keccak256": "0xd10975de010d89fd1c78dc5e8a9a7e7f496198085c151648f20cba166b32582b",
 			"license": "MIT",
@@ -975,19 +810,19 @@
 			]
 		},
 		"contracts/ERC721A.sol": {
-			"keccak256": "0x527c22dd422a8feb71d8489cdc63381379c7adb0757fdbf2911c64b3f759a019",
+			"keccak256": "0xced11399f9a94afb8427eed2053aeea37f07cdc8c53434444496ee4e91dfb9ae",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://4a0b0d1615f19745389f7a793d0ca51339de149082561661da9c065c194fbbdc",
-				"dweb:/ipfs/Qmez17QffTesJc62jUF4pmgBMa5xUcAAkbDDgbGU5o3XCu"
+				"bzz-raw://ceb29f8a07ab7aed848f36f7271c301264eb57a123ad9f566d62fdb2923c541a",
+				"dweb:/ipfs/QmbvhC3bH3bpGAYJqTyRPEegkciksyT8MaRmER5GNzXTMN"
 			]
 		},
 		"contracts/treasuredrop.sol": {
-			"keccak256": "0x8233eefacde255da5e55ffea0896fd624a35a29e1953897e1ebeab3060013d22",
+			"keccak256": "0x1dc74ec0c543bac60df2f7c9c54e20ffd8f2fe243754bdedf2c8f0741e9073d8",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://5e4ce67a7a076ef06d5fc82485b35797b7c5852ce07b35760cf41d10eb521a4f",
-				"dweb:/ipfs/QmSCGsJCNYCMSRFV6FdccaR5xSWFoMDfFPAEPpu8ne1Koh"
+				"bzz-raw://da623d1f2328e4116b0aeb6211aa0a22bbc332764fbaa51bd9d4687ca5d70903",
+				"dweb:/ipfs/QmR5QMQtZ3tZDc5VXruMDbwXFh8JNurLjPZu8ptY4PocVk"
 			]
 		}
 	},

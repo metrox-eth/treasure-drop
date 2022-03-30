@@ -1,5 +1,4 @@
 // SPDX-License-Identifier: MIT
-// Creator: Chiru Labs
 
 pragma solidity ^0.8.9;
 
@@ -18,7 +17,6 @@ import "@openzeppelin/contracts/utils/introspection/ERC165.sol";
  *
  * Assumes serials are sequentially minted starting at 0 (e.g. 0, 1, 2, 3..).
  *
- * Does not support burning tokens to address(0).
  */
 contract ERC721A is Context, ERC165, IERC721, IERC721Metadata, IERC721Enumerable {
     using Address for address;
@@ -35,8 +33,6 @@ contract ERC721A is Context, ERC165, IERC721, IERC721Metadata, IERC721Enumerable
     }
 
     uint256 private currentIndex = 0;
-
-    uint256 internal immutable maxBatchSize;
 
     // Token name
     string private _name;
@@ -57,19 +53,12 @@ contract ERC721A is Context, ERC165, IERC721, IERC721Metadata, IERC721Enumerable
     // Mapping from owner to operator approvals
     mapping(address => mapping(address => bool)) private _operatorApprovals;
 
-    /**
-     * @dev
-     * `maxBatchSize` refers to how much a minter can mint at a time.
-     */
     constructor(
         string memory name_,
-        string memory symbol_,
-        uint256 maxBatchSize_
+        string memory symbol_
     ) {
-        require(maxBatchSize_ > 0, "ERC721A: max batch size must be nonzero");
         _name = name_;
         _symbol = symbol_;
-        maxBatchSize = maxBatchSize_;
     }
 
     /**
@@ -127,22 +116,12 @@ contract ERC721A is Context, ERC165, IERC721, IERC721Metadata, IERC721Enumerable
      * @dev See {IERC721-balanceOf}.
      */
     function balanceOf(address owner) public view override returns (uint256) {
-        require(owner != address(0), "ERC721A: balance query for the zero address");
         return uint256(_addressData[owner].balance);
-    }
-
-    function _numberMinted(address owner) internal view returns (uint256) {
-        require(owner != address(0), "ERC721A: number minted query for the zero address");
-        return uint256(_addressData[owner].numberMinted);
     }
 
     function ownershipOf(uint256 tokenId) internal view returns (TokenOwnership memory) {
         require(_exists(tokenId), "ERC721A: owner query for nonexistent token");
-
         uint256 lowestTokenToCheck;
-        if (tokenId >= maxBatchSize) {
-            lowestTokenToCheck = tokenId - maxBatchSize + 1;
-        }
 
         for (uint256 curr = tokenId; curr >= lowestTokenToCheck; curr--) {
             TokenOwnership memory ownership = _ownerships[curr];
@@ -307,9 +286,6 @@ contract ERC721A is Context, ERC165, IERC721, IERC721Metadata, IERC721Enumerable
         require(to != address(0), "ERC721A: mint to the zero address");
         // We know if the first token in the batch doesn't exist, the other ones don't as well, because of serial ordering.
         require(!_exists(startTokenId), "ERC721A: token already minted");
-        require(quantity <= maxBatchSize, "ERC721A: quantity to mint too high");
-
-        _beforeTokenTransfers(address(0), to, startTokenId, quantity);
 
         AddressData memory addressData = _addressData[to];
         _addressData[to] = AddressData(
@@ -330,7 +306,6 @@ contract ERC721A is Context, ERC165, IERC721, IERC721Metadata, IERC721Enumerable
         }
 
         currentIndex = updatedIndex;
-        _afterTokenTransfers(address(0), to, startTokenId, quantity);
     }
 
     /**
@@ -359,7 +334,6 @@ contract ERC721A is Context, ERC165, IERC721, IERC721Metadata, IERC721Enumerable
         require(prevOwnership.addr == from, "ERC721A: transfer from incorrect owner");
         require(to != address(0), "ERC721A: transfer to the zero address");
 
-        _beforeTokenTransfers(from, to, tokenId, 1);
 
         // Clear approvals from the previous owner
         _approve(address(0), tokenId, prevOwnership.addr);
@@ -378,7 +352,6 @@ contract ERC721A is Context, ERC165, IERC721, IERC721Metadata, IERC721Enumerable
         }
 
         emit Transfer(from, to, tokenId);
-        _afterTokenTransfers(from, to, tokenId, 1);
     }
 
     /**
@@ -450,42 +423,4 @@ contract ERC721A is Context, ERC165, IERC721, IERC721Metadata, IERC721Enumerable
             return true;
         }
     }
-
-    /**
-     * @dev Hook that is called before a set of serially-ordered token ids are about to be transferred. This includes minting.
-     *
-     * startTokenId - the first token id to be transferred
-     * quantity - the amount to be transferred
-     *
-     * Calling conditions:
-     *
-     * - When `from` and `to` are both non-zero, ``from``'s `tokenId` will be
-     * transferred to `to`.
-     * - When `from` is zero, `tokenId` will be minted for `to`.
-     */
-    function _beforeTokenTransfers(
-        address from,
-        address to,
-        uint256 startTokenId,
-        uint256 quantity
-    ) internal virtual {}
-
-    /**
-     * @dev Hook that is called after a set of serially-ordered token ids have been transferred. This includes
-     * minting.
-     *
-     * startTokenId - the first token id to be transferred
-     * quantity - the amount to be transferred
-     *
-     * Calling conditions:
-     *
-     * - when `from` and `to` are both non-zero.
-     * - `from` and `to` are never both zero.
-     */
-    function _afterTokenTransfers(
-        address from,
-        address to,
-        uint256 startTokenId,
-        uint256 quantity
-    ) internal virtual {}
 }
