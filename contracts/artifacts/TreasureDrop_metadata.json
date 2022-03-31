@@ -818,11 +818,11 @@
 			]
 		},
 		"contracts/treasuredrop.sol": {
-			"keccak256": "0x1dc74ec0c543bac60df2f7c9c54e20ffd8f2fe243754bdedf2c8f0741e9073d8",
+			"keccak256": "0x671a6ce0a4f06b20c67b2163cbc2a5ead46a52fce61c1ea7253af238cd95b52c",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://da623d1f2328e4116b0aeb6211aa0a22bbc332764fbaa51bd9d4687ca5d70903",
-				"dweb:/ipfs/QmR5QMQtZ3tZDc5VXruMDbwXFh8JNurLjPZu8ptY4PocVk"
+				"bzz-raw://6b57c4b9c655eda84834c6290ca6afa3f2ad25b35154b3627dba78c0d672e037",
+				"dweb:/ipfs/QmWukmFxvWctrVGGLCdJZo3wmC23XDVefUmZmwK7XSLMDS"
 			]
 		}
 	},

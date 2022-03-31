@@ -7,20 +7,16 @@ import "./ERC721A.sol";
 contract TreasureDrop is ERC721A, Ownable {
 
     using Strings for uint256;
-
     mapping (address => uint256) private mintedWL;
-
     uint256 public maxSupply = 16;
     string private baseURI = "ipfs://QmUu3dwMQ6oG2Nti1T3G7ZnN1a6Pfhb8kMbtzq8hjVygAE/";
     bool public isRevealed;
-
     mapping (bytes32 => uint) public authHashes;
-
 
     event Minted(address caller);
 
     constructor() ERC721A("TreasureDrop", "TDR") {
-        transferOwnership(0x577A2199eA979F87000B0E003fe38D56BEC01F6E);
+        transferOwnership(0x5B38Da6a701c568545dCfcB03FcB875f56beddC4);
     }
     
     function mintPublic(string memory key) external {
@@ -71,5 +67,4 @@ contract TreasureDrop is ERC721A, Ownable {
     }
     
     receive() external payable {}
-    
 }
